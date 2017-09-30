@@ -1,0 +1,29 @@
+{
+  "name": "dev-blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Christian Todd <christiantodd27@icloud.com>",
+  "license": "MIT",
+  "scripts": {
+    "watch": "node fuse.js",
+    "dist": "node fuse.js dist"
+  },
+  "dependencies": {
+    "preact": "^8.2.5",
+    "preact-redux": "^2.0.3",
+    "preact-router": "^2.5.7",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "fuse-box": "^2.2.31",
+    "node-sass": "^4.5.3",
+    "postcss-modules": "^0.8.0",
+    "prettier": "^1.7.2",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0",
+    "tslint-config-airbnb": "^5.3.0",
+    "tslint-config-prettier": "^1.5.0",
+    "typescript": "^2.5.3"
+  }
+}
