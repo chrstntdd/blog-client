@@ -1,4 +1,4 @@
-import { ADD_TODO, MOVE_UP, REMOVE_TODO } from '../actions/types';
+import { ADD_TODO, MOVE_DOWN, MOVE_UP, REMOVE_TODO } from '../actions/types';
 const INITIAL_STATE = {
   visibilityFilter: 'all',
   todos: [
@@ -65,6 +65,35 @@ export default function(state = INITIAL_STATE, action) {
           todos: state.todos
             .slice(0, action.payload - 1)
             .concat(reverseSlice, state.todos.slice(action.payload + 1))
+        };
+      }
+    }
+
+    case MOVE_DOWN: {
+      const reverseSlice = state.todos
+        .slice(action.payload, action.payload + 2)
+        .reverse();
+
+      if (action.payload + 1 >= state.todos.length) {
+        /* at the end of the list */
+        return {
+          ...state
+        };
+      } else if (action.payload === 0) {
+        /* at the top of the list */
+        return {
+          ...state,
+          todos: [...reverseSlice, ...state.todos.slice(action.payload + 2)]
+        };
+      } else {
+        /* between start and end of the list */
+        return {
+          ...state,
+          todos: [
+            ...state.todos.slice(0, action.payload),
+            ...reverseSlice,
+            ...state.todos.slice(action.payload + 2)
+          ]
         };
       }
     }

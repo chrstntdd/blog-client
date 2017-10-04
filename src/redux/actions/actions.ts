@@ -15,7 +15,7 @@ export const addTodo = text => (dispatch, getState) => {
 };
 
 export const removeTodo = id => dispatch => {
-  dispatch({ type: REMOVE_TODO, payload: id });
+  dispatch({ type: REMOVE_TODO, payload: Number(id) });
 };
 
 export const showGreeting = text => dispatch => {

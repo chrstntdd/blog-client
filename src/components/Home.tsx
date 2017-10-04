@@ -34,12 +34,12 @@ export class Home extends Component<PropTypes, StateType> {
     this.props.removeTodo(todoId);
   }
 
-  moveUp(e) {
-    this.props.moveUp(e.target.parentElement.id);
+  moveUp(index) {
+    this.props.moveUp(index);
   }
 
-  moveDown(e) {
-    this.props.moveDown(e.target.parentElement.id);
+  moveDown(index) {
+    this.props.moveDown(index);
   }
 
   render({ todos, message }) {
@@ -56,11 +56,11 @@ export class Home extends Component<PropTypes, StateType> {
         </form>
         <ul>
           {todos.map((todo, i) => (
-            <li id={i}>
+            <li id={todo.id}>
               <p>{todo.text}</p>
               <button onClick={e => this.handleRemove(e)}>-</button>
-              <button onClick={e => this.moveUp(e)}>^</button>
-              <button onClick={e => this.moveDown(e)}>v</button>
+              <button onClick={e => this.moveUp(i)}>^</button>
+              <button onClick={e => this.moveDown(i)}>v</button>
             </li>
           ))}
         </ul>
