@@ -9,59 +9,75 @@ const {
   Sparky
 } = require('fuse-box');
 
-let fuse,
-  app,
+let app,
   vendor,
+  server,
   isProduction = false;
 
-Sparky.task('config', () => {
-  fuse = new FuseBox({
-    homeDir: 'src/',
-    output: 'dist/$name.js',
-    log: true,
-    experimentalFeatures: true,
-    target: 'browser',
-    cache: !isProduction,
-    sourceMaps: !isProduction,
-    hash: isProduction,
-    tsConfig: './tsconfig.json',
-    plugins: [
-      SVGPlugin(),
-      [
-        SassPlugin({
-          outputStyle: 'compressed'
-        }),
-        CSSModules(),
-        CSSPlugin()
-      ],
-      WebIndexPlugin({
-        template: 'src/index.html',
-        title: 'Christian Todd'
+const fuse = new FuseBox({
+  homeDir: 'src',
+  output: 'dist/$name.js',
+  log: true,
+  experimentalFeatures: true,
+  cache: !isProduction,
+  sourceMaps: !isProduction,
+  hash: isProduction,
+  tsConfig: './tsconfig.json',
+  plugins: [
+    SVGPlugin(),
+    [
+      SassPlugin({
+        outputStyle: 'compressed'
       }),
-      isProduction &&
-        QuantumPlugin({
-          removeExportsInterop: false,
-          bakeApiIntoBundle: 'vendor',
-          uglify: true,
-          treeshake: true
-        })
-    ]
-  });
-  // vendor
-  vendor = fuse.bundle('vendor').instructions('~ index.tsx');
-
-  // bundle app
-  app = fuse.bundle('app').instructions('!> [index.tsx]');
+      CSSModules(),
+      CSSPlugin()
+    ],
+    WebIndexPlugin({
+      template: 'src/client/index.html',
+      title: 'Christian Todd'
+    }),
+    isProduction &&
+      QuantumPlugin({
+        removeExportsInterop: false,
+        bakeApiIntoBundle: 'vendor',
+        uglify: true,
+        treeshake: true
+      })
+  ]
 });
+// vendor
+fuse
+  .bundle('server/public/vendor')
+  .watch('client/**')
+  .hmr()
+  .instructions('~ client/index.tsx');
 
-Sparky.task('default', ['clean', 'config'], () => {
-  fuse.dev({ root: './dist' });
-  // add dev instructions
-  app.watch().hmr();
+// bundle app
+fuse
+  .bundle('server/public/app')
+  .watch('client/**')
+  .hmr()
+  .instructions('!> [client/index.tsx]');
+
+/* bundle server */
+fuse
+  .bundle('server/bundle')
+  .watch('server/**')
+  .instructions(' > [server/index.ts]')
+  .completed(proc => proc.start());
+
+/* yarn watch */
+Sparky.task('default', ['clean', 'copy-keys', 'config'], () => {
   return fuse.run();
 });
 
+Sparky.task('copy-keys', () =>
+  Sparky.src('./keys', { base: './src/server' }).dest('./dist/server')
+);
+
+/* remove all old files */
 Sparky.task('clean', () => Sparky.src('dist/*').clean('dist/'));
+/* set production environment */
 Sparky.task('prod-env', ['clean'], () => {
   isProduction = true;
 });

@@ -5,7 +5,9 @@
     "jsx": "react",
     "jsxFactory": "h",
     "target": "es5",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node", "express"]
   },
   "include": ["src/*.ts", "src/*.tsx"]
 }
