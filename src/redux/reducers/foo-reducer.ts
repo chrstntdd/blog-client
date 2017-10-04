@@ -50,21 +50,23 @@ export default function(state = INITIAL_STATE, action) {
         /* at the end of the list */
         return {
           ...state,
-          todos: state.todos.slice(0, action.payload - 1).concat(reverseSlice)
+          todos: [...state.todos.slice(0, action.payload - 1), ...reverseSlice]
         };
       } else if (action.payload === 1) {
         /* at the second item in the list */
         return {
           ...state,
-          todos: reverseSlice.concat(state.todos.slice(action.payload + 1))
+          todos: [...reverseSlice, ...state.todos.slice(action.payload + 1)]
         };
       } else {
         /* between the start and end */
         return {
           ...state,
-          todos: state.todos
-            .slice(0, action.payload - 1)
-            .concat(reverseSlice, state.todos.slice(action.payload + 1))
+          todos: [
+            ...state.todos.slice(0, action.payload - 1),
+            ...reverseSlice,
+            ...state.todos.slice(action.payload + 1)
+          ]
         };
       }
     }
