@@ -1,10 +1,19 @@
-import { addTodo, removeTodo, showGreeting } from '../redux/actions/actions';
+import {
+  addTodo,
+  removeTodo,
+  showGreeting,
+  moveUp,
+  moveDown
+} from '../redux/actions/actions';
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
 
 interface PropTypes {
   showGreeting: Function;
   addTodo: Function;
+  removeTodo: Function;
+  moveUp: Function;
+  moveDown: Function;
 }
 interface StateType {}
 
@@ -22,10 +31,18 @@ export class Home extends Component<PropTypes, StateType> {
 
   handleRemove(e) {
     const todoId = e.target.parentElement.id;
-    this.props.removeTodo(todoId)
+    this.props.removeTodo(todoId);
   }
 
-  render({todos, message}) {
+  moveUp(e) {
+    this.props.moveUp(e.target.parentElement.id);
+  }
+
+  moveDown(e) {
+    this.props.moveDown(e.target.parentElement.id);
+  }
+
+  render({ todos, message }) {
     return (
       <section>
         <h1>HOME PAGE</h1>
@@ -39,9 +56,11 @@ export class Home extends Component<PropTypes, StateType> {
         </form>
         <ul>
           {todos.map((todo, i) => (
-            <li id={todo.id}>
-              {todo.text}
+            <li id={i}>
+              <p>{todo.text}</p>
               <button onClick={e => this.handleRemove(e)}>-</button>
+              <button onClick={e => this.moveUp(e)}>^</button>
+              <button onClick={e => this.moveDown(e)}>v</button>
             </li>
           ))}
         </ul>
@@ -52,9 +71,13 @@ export class Home extends Component<PropTypes, StateType> {
 
 const mapStateToProps = state => ({
   message: state.bar.message,
-  todos: state.foo.todos,
+  todos: state.foo.todos
 });
 
-export default connect(mapStateToProps, { addTodo, removeTodo, showGreeting })(
-  Home
-);
+export default connect(mapStateToProps, {
+  addTodo,
+  removeTodo,
+  showGreeting,
+  moveUp,
+  moveDown
+})(Home);
