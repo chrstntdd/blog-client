@@ -9,6 +9,9 @@
     "dist": "node fuse.js dist"
   },
   "dependencies": {
+    "express": "^4.16.1",
+    "express-graphql": "^0.6.11",
+    "graphql": "^0.11.7",
     "preact": "^8.2.5",
     "preact-redux": "^2.0.3",
     "preact-router": "^2.5.7",
