@@ -54,12 +54,16 @@ Sparky.task('config', () => {
   app = fuse.bundle('app').instructions('!> [index.tsx]');
 });
 
-Sparky.task('default', ['clean', 'config'], () => {
+Sparky.task('default', ['clean', 'copy-assets', 'config'], () => {
   fuse.dev({ root: './dist' });
   // add dev instructions
   app.watch().hmr();
   return fuse.run();
 });
+
+Sparky.task('copy-assets', () =>
+  Sparky.src('./assets', { base: './src' }).dest('./dist')
+);
 
 Sparky.task('clean', () => Sparky.src('dist/*').clean('dist/'));
 Sparky.task('prod-env', ['clean'], () => {

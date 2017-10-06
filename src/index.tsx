@@ -4,6 +4,8 @@ import { compose, applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './redux/reducers/index'
 
+import './index.scss'
+
 import App from './components/app';
 
 // ADD IN REDUX DEBUGGER

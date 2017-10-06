@@ -7,6 +7,7 @@ import Header from './Header';
 import Footer from './Footer';
 
 /* Page Components */
+import Navigation from './Navigation';
 import Home from './Home';
 import About from './About';
 import Portfolio from './Portfolio';
@@ -14,7 +15,7 @@ import Contact from './Contact';
 
 const App = () => (
   <div id="app">
-    <Header />
+    <Navigation />
     <Router>
       <Home path="/" />
       <About path="/about" />
