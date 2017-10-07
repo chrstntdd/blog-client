@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
+    "lib": ["es7"],
     "sourceMap": true,
     "module": "commonjs",
     "jsx": "react",
     "jsxFactory": "h",
     "target": "es5",
-    "experimentalDecorators": true
+    "typeRoots": ["./node_modules/@types"]
   },
   "include": ["src/*.ts", "src/*.tsx"]
 }

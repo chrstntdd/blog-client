@@ -12,7 +12,6 @@ const {
 let fuse,
   app,
   vendor,
-  server,
   isProduction = false;
 
 Sparky.task('config', () => {
@@ -24,7 +23,7 @@ Sparky.task('config', () => {
     cache: !isProduction,
     sourceMaps: !isProduction,
     hash: isProduction,
-    tsConfig: './tsconfig.json',
+    tsConfig: './tsconfig.client.json',
     plugins: [
       SVGPlugin(),
       [
@@ -52,17 +51,10 @@ Sparky.task('config', () => {
 
   // bundle app
   app = fuse.bundle('app').instructions('!> [index.tsx]');
-
-  /* bundle server */
-  server = fuse
-    .bundle('server/bundle')
-    .watch('server/**')
-    .instructions('> [server/index.ts]')
-    .completed(proc => proc.start());
 });
 
 Sparky.task('default', ['clean', 'copy-assets', 'config'], () => {
-  // fuse.dev({ root: './dist' });
+  fuse.dev({ root: './dist' });
   // add dev instructions
   app.watch().hmr();
   return fuse.run();

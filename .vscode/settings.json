@@ -1,5 +1,8 @@
 {
   "cSpell.words": [
-    "graphiql"
-  ]
+    "QLHTTP",
+    "graphiql",
+    "timestamps"
+  ],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

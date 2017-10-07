@@ -9,6 +9,8 @@
         "DEVTOOLS",
         "graphiql",
         "preact",
+        "QLHTTP",
+        "timestamps",
         "todos"
     ],
     // flagWords - list of words to be always considered incorrect
