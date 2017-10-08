@@ -10,6 +10,8 @@
         "graphiql",
         "preact",
         "QLHTTP",
+        "signin",
+        "signup",
         "timestamps",
         "todos"
     ],

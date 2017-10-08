@@ -2,6 +2,8 @@
   "cSpell.words": [
     "QLHTTP",
     "graphiql",
+    "signin",
+    "signup",
     "timestamps"
   ],
   "typescript.tsdk": "node_modules\\typescript\\lib"
