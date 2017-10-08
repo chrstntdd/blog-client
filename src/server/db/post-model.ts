@@ -16,6 +16,19 @@ export const postSchema = new Schema(
     author: {
       type: String,
       required: true
+    },
+    wordCount: {
+      type: Number
+    },
+    published: {
+      type: Date,
+      default: Date.now
+    },
+    edited: {
+      type: Date
+    },
+    tags: {
+      type: [String]
     }
   },
   { timestamps: true }

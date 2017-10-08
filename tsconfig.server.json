@@ -10,7 +10,15 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "./lib",
-    "types": ["body-parser", "mongodb", "mongoose", "node", "express"],
+    "types": [
+      "body-parser",
+      "mongodb",
+      "mongoose",
+      "node",
+      "express",
+      "helmet",
+      "morgan"
+    ],
     "typeRoots": ["./node_modules/@types"]
   },
   "include": ["src/server/**/*.ts"],

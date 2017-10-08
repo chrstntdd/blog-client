@@ -16,26 +16,30 @@ export const userSchema = new Schema(
     username: {
       type: String,
       required: true,
-      unique: true,
+      unique: true
     },
     password: {
       type: String,
-      required: true,
+      required: true
     },
     email: {
       type: String,
       required: true,
-      unique: true,
+      unique: true
     },
     firstName: {
       type: String,
-      required: true,
+      required: true
     },
     lastName: {
       type: String,
-      required: true,
+      required: true
     },
-    posts: [postSchema],
+    created: {
+      type: Date,
+      default: Date.now
+    },
+    posts: [postSchema]
   },
   { timestamps: true }
 );

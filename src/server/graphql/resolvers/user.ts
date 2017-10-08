@@ -1,9 +1,5 @@
-import User from '../../db/user-model';
+import { default as User, userSchema } from '../../db/user-model';
 import { sign } from 'jsonwebtoken';
-
-require('dotenv').config();
-
-const JWT_SECRET = process.env.JWT_SECRET;
 
 export default {
   signup: async (_, { email, username, password, firstName, lastName }) => {
@@ -12,13 +8,13 @@ export default {
       username,
       password,
       firstName,
-      lastName,
+      lastName
     }).save();
 
     const token = newUser.createToken(newUser._id);
 
     return {
-      token,
+      token
     };
   },
   signin: async (_, { email, password }) => {
@@ -30,7 +26,7 @@ export default {
     } else {
       const token = user.createToken(user._id);
       return {
-        token,
+        token
       };
     }
   },
@@ -52,4 +48,27 @@ export default {
       return user;
     }
   },
+
+  updateUser: async (_, args) => {
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        args.id,
+        { $set: args },
+        { new: true }
+      );
+
+      return updatedUser;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+
+  deleteUser: async (_, { id }) => {
+    try {
+      const userToDelete = await User.findByIdAndRemove(id);
+      return userToDelete;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 };

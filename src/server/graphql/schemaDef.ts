@@ -6,24 +6,25 @@ type Auth {
 }
 
 type User {
-  _id: String!
-  email: String!
+  _id: ID!
   username: String!
   password: String!
+  email: String!
   firstName: String!
   lastName: String!
-  createdAt: Date!
+  created: Date!
   posts: [Post]
 }
 
 type Post {
-  _id: String!
+  _id: ID!
   title: String!
   body: String!
-  authorName: String!
-  authorId: String!
-  createdAt: Date!
+  author: User!
   wordCount: Int
+  published: Date!
+  edited: Date
+  tags: [String]
 }
 
 type Query {
@@ -32,8 +33,10 @@ type Query {
 }
 
 type Mutation {
-  signup(email: String!, username: String!, password: String!, firstName: String!, lastName: String!): Auth
-  signin(email: String!, password: String!): Auth
+  signup(email: String!, username: String!, password: String!, firstName: String!, lastName: String!): Auth! 
+  signin(email: String!, password: String!): Auth!
+  updateUser(id: ID!, username: String, email: String, firstName: String, lastName: String): User!
+  deleteUser(id: ID!): User!
 }
 
 schema {
