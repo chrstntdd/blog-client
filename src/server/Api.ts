@@ -14,7 +14,7 @@ import resolvers from './graphql/resolvers';
 
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers,
+  resolvers
 });
 
 /* 
@@ -75,7 +75,7 @@ export default class Api {
     this.express.use(
       '/graphiql',
       graphiqlExpress({
-        endpointURL: '/graphql',
+        endpointURL: '/graphql'
       })
     );
     this.express.use(
@@ -85,15 +85,15 @@ export default class Api {
         pretty: true,
         context: {
           secret: JWT_SECRET,
-          user: req.user,
-        },
+          user: req.user
+        }
       }))
     );
     this.express.use((err, req, res, next) => {
       console.error(err);
       res.status(err.status || 500).json({
         message: err.message,
-        error: err,
+        error: err
       });
     });
   }

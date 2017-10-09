@@ -8,7 +8,6 @@ import User from '../src/server/db/user-model';
 const TEST_DATABASE_URL = process.env.TEST_DATABASE_URL;
 mongoose.Promise = global.Promise;
 
-
 const generatePost = (firstName, lastName) => ({
   title: faker.lorem.words(),
   body: faker.lorem.paragraphs(),
