@@ -11,38 +11,35 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 interface IUserModel extends IUser, Document {}
 
-export const userSchema = new Schema(
-  {
-    username: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    password: {
-      type: String,
-      required: true
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    firstName: {
-      type: String,
-      required: true
-    },
-    lastName: {
-      type: String,
-      required: true
-    },
-    created: {
-      type: Date,
-      default: Date.now
-    },
-    posts: [postSchema]
+export const userSchema = new Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true
   },
-  { timestamps: true }
-);
+  password: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  posts: [postSchema]
+});
 
 userSchema.pre('save', async function(next) {
   try {

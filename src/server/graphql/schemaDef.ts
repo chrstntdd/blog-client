@@ -20,7 +20,7 @@ type Post {
   _id: ID!
   title: String!
   body: String!
-  author: User!
+  author: String!
   wordCount: Int
   published: Date!
   edited: Date
@@ -30,6 +30,10 @@ type Post {
 type Query {
   user(_id: String!): User
   users: [User]
+
+  getAllUserPosts(id: ID!): [Post]
+  getUserPost(userId: ID!, postId: ID!): Post
+  
 }
 
 type Mutation {
@@ -37,6 +41,10 @@ type Mutation {
   signin(email: String!, password: String!): Auth!
   updateUser(id: ID!, username: String, email: String, firstName: String, lastName: String): User!
   deleteUser(id: ID!): User!
+
+  createPost(id: ID!, title: String!, body: String, tags: [String]): Post!
+  updatePost(userId: ID!, postId: ID!, title: String, body: String, tags: [String]): Post!
+  deletePost(userId: ID!, postId: ID!): Post!
 }
 
 schema {
