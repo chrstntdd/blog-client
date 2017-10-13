@@ -1,0 +1,21 @@
+.wrapper {
+  display: grid;
+  flex-direction: row;
+  margin-bottom: 4rem;
+  grid-template-columns: 65% 35%;
+  grid-template-rows: 1fr; 
+  margin: 0 auto;
+  padding: 3rem;
+  h1 {
+    grid-row: 1;
+  }
+  section {
+    grid-column: 1;
+    grid-row: 2;    
+  }
+  aside {
+    grid-column: 2;
+    grid-row: 2;
+
+  }
+}

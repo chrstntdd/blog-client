@@ -1,3 +1,6 @@
+$DARK_BG: #282c34;
+$OFF_WHITE: #f2f2f2;
+
 @function between($to, $from, $toWidth, $fromWidth) {
   $slope: ($to - $from) / ($toWidth - $fromWidth);
   $base: $from - $slope * $fromWidth;
@@ -49,5 +52,5 @@ body {
 }
 
 body {
-  background-color: #282c34;
+  background-color: $OFF_WHITE;
 }

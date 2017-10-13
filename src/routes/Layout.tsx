@@ -5,15 +5,13 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
 const Layout = () => (
-  <div id="app">
+  <main>
     <Navigation />
-    <div className="container">
-      <Switch>
-        {routes.map(route => <Route key={route.name} {...route} />)}
-      </Switch>
-    </div>
+    <Switch>
+      {routes.map(route => <Route key={route.name} {...route} />)}
+    </Switch>
     <Footer />
-  </div>
+  </main>
 );
 
 export default Layout;
