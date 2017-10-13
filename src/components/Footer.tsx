@@ -1,9 +1,9 @@
-import { h } from 'preact';
+import * as React from 'react';
 import styles from './footer.scss'
 
 const Footer = () => {
   return (
-    <footer class={styles.footer}>
+    <footer className={styles.footer}>
       <h3>FOOTER AREA</h3>
     </footer>
   );

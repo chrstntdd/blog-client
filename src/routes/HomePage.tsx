@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   addTodo,
   removeTodo,
@@ -5,11 +6,15 @@ import {
   moveUp,
   moveDown
 } from '../redux/actions/actions';
-import { h, Component } from 'preact';
-import { connect } from 'preact-redux';
-import Header from './Header';
+import { connect } from 'react-redux';
+import Header from '../components/Header';
 
-import styles from './home.scss';
+import styles from '../components/home.scss';
+
+interface Todo {
+  text: String;
+  id: Number;
+}
 
 interface PropTypes {
   showGreeting: Function;
@@ -17,20 +22,22 @@ interface PropTypes {
   removeTodo: Function;
   moveUp: Function;
   moveDown: Function;
+  message?: String;
+  todos?: [Todo];
 }
 interface StateType {}
 
-export class Home extends Component<PropTypes, StateType> {
+export class HomePage extends React.Component<PropTypes, StateType> {
   componentWillMount() {
     this.props.showGreeting('hello on mount!');
   }
 
-  handleSubmit(e) {
-    const inputVal = e.srcElement[0].value;
+  handleSubmit = e => {
     e.preventDefault();
+    const inputVal = this.input.value;
     this.props.addTodo(inputVal);
     document.getElementById('todo-form').reset();
-  }
+  };
 
   handleRemove(e) {
     const todoId = e.target.parentElement.id;
@@ -45,24 +52,27 @@ export class Home extends Component<PropTypes, StateType> {
     this.props.moveDown(index);
   }
 
-  render({ todos, message }) {
+  render() {
+    const { todos, message } = this.props;
     return (
-      <section class={styles.homePage} id="home-page">
+      <section className={styles.homePage} id="home-page">
         <Header />
-        <div class={styles.otherStuff}>
+        <div className={styles.otherStuff}>
           <h1>HOME PAGE</h1>
           <h4>{message}</h4>
-          <form
-            id="todo-form"
-            onSubmit={e => this.handleSubmit(e)}
-            action="javascript:"
-          >
-            <input type="text" placeholder="new todo" />
+          <form id="todo-form" onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              placeholder="new todo"
+              ref={element => {
+                this.input = element;
+              }}
+            />
           </form>
           <ul>
-            {todos.map((todo, i) => (
-              <li id={todo.id}>
-                <p>{todo.text}</p>
+            {todos.map(({ text, id }, i) => (
+              <li key={i} id={id.toString()}>
+                <p>{text}</p>
                 <button onClick={e => this.handleRemove(e)}>-</button>
                 <button onClick={e => this.moveUp(i)}>^</button>
                 <button onClick={e => this.moveDown(i)}>v</button>
@@ -86,4 +96,4 @@ export default connect(mapStateToProps, {
   showGreeting,
   moveUp,
   moveDown
-})(Home);
+})(HomePage);

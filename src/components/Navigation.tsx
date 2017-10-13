@@ -1,22 +1,19 @@
-import { h } from 'preact';
-import { Link } from 'preact-router';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './navigation.scss';
 
-const Navigation = props => (
-  <nav class={styles.mainNav} role="navigation">
+const Navigation = () => (
+  <nav className={styles.mainNav} role="navigation">
     <ul>
       <li>
-        <Link href="/">Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <Link href="/about">About</Link>
+        <Link to="/blog">Blog</Link>
       </li>
       <li>
-        <Link href="/portfolio">Portfolio</Link>
-      </li>
-      <li>
-        <Link href="/contact">Contact</Link>
+        <Link to="/portfolio">Portfolio</Link>
       </li>
     </ul>
   </nav>

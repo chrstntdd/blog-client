@@ -21,6 +21,7 @@ Sparky.task('config', () => {
     log: true,
     experimentalFeatures: true,
     cache: !isProduction,
+    target: 'browser',
     sourceMaps: !isProduction,
     hash: isProduction,
     tsConfig: './tsconfig.client.json',
