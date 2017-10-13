@@ -6,7 +6,8 @@
     "noImplicitAny": false,
     "removeComments": true,
     "sourceMap": false,
-    "target": "es6",
+    "jsx": "react",    
+    "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "./lib",
@@ -17,10 +18,13 @@
       "node",
       "express",
       "helmet",
-      "morgan"
+      "morgan",
+      "react",
+      "react-dom",
+      "react-router"
     ],
     "typeRoots": ["./node_modules/@types"]
   },
-  "include": ["src/server/**/*.ts"],
+  "include": ["src/server/**/*"],
   "exclude": ["node_modules", "**/*.test.ts"]
 }

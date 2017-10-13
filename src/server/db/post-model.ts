@@ -26,6 +26,9 @@ export const postSchema = new Schema({
   edited: {
     type: Date
   },
+  imgUrl: {
+    type: String
+  },
   tags: {
     type: [String]
   }

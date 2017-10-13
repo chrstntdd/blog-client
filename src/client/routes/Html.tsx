@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import * as React from 'react';
 
 const Html = ({ content, state }) => (
   <html lang="en">
@@ -31,9 +31,5 @@ const Html = ({ content, state }) => (
   </html>
 );
 
-Html.propTypes = {
-  content: PropTypes.string.isRequired,
-  state: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
-};
 
 export default Html;

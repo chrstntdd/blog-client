@@ -16,7 +16,7 @@ export default {
 
     return user.posts.id(postId);
   },
-  createPost: async (_, { id, title, body, tags }) => {
+  createPost: async (_, { id, title, body, tags, imgUrl }) => {
     /* publish a new post */
     const user = await User.findById(id);
     const wordCount: Number = words(body).length;
@@ -29,6 +29,7 @@ export default {
 
       const newPost = await new Post({
         wordCount,
+        imgUrl,
         title: sanitizer.escape(title.trim()),
         body: sanitizer.escape(body.trim()),
         tags: cleanTags,
@@ -41,6 +42,7 @@ export default {
     } else {
       const newPost = await new Post({
         wordCount,
+        imgUrl,        
         title: sanitizer.escape(title.trim()),
         body: sanitizer.escape(body.trim()),
         author: `${user.firstName} ${user.lastName}`

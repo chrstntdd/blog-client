@@ -5,6 +5,7 @@ export interface IPost {
   wordCount: number;
   published: Date;
   edited: Date;
+  imgUrl: string;
   tags: [String];
 }
 

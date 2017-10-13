@@ -16,7 +16,7 @@ let fuse,
 
 Sparky.task('config', () => {
   fuse = new FuseBox({
-    homeDir: 'src/',
+    homeDir: 'src/client',
     output: 'dist/$name.js',
     log: true,
     experimentalFeatures: true,
@@ -35,7 +35,7 @@ Sparky.task('config', () => {
         CSSPlugin()
       ],
       WebIndexPlugin({
-        template: 'src/index.html',
+        template: 'src/client/index.html',
         title: 'Christian Todd'
       }),
       isProduction &&

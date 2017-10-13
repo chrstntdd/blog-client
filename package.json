@@ -9,9 +9,10 @@
     "dist": "node fuse.js dist",
     "build:server": "node_modules/.bin/tsc -p ~/Development/projects/blog-client/tsconfig.server.json",
     "build:win-server": "node_modules/.bin/tsc -p t:/Development/projects/blog-client/tsconfig.server.json",
-    "watch:server": "nodemon lib/index.js"
+    "watch:server": "nodemon lib/server/index.js"
   },
   "dependencies": {
+    "apollo-local-query": "^0.3.0",
     "apollo-server-express": "^1.1.3",
     "bcrypt": "^1.0.3",
     "dotenv": "^4.0.0",
@@ -29,6 +30,7 @@
     "react-apollo": "^1.4.16",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
@@ -49,6 +51,8 @@
     "@types/react": "^16.0.10",
     "@types/react-dom": "^16.0.1",
     "@types/react-redux": "^5.0.10",
+    "@types/react-router": "^4.0.15",
+    "@types/react-router-dom": "^4.0.8",
     "faker": "^4.1.0",
     "fuse-box": "^2.2.31",
     "morgan": "^1.9.0",
